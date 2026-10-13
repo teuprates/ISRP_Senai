@@ -8,7 +8,9 @@
     "start": "node server.js",
     "dev": "node --watch server.js",
     "db:init": "node scripts/init-db.js",
-    "homologacao": "node scripts/homologacao.js"
+    "homologacao": "node scripts/homologacao.js",
+    "homologacao:1": "node scripts/homologacao.js 1",
+    "homologacao:2": "node scripts/homologacao.js 2"
   },
   "engines": {
     "node": ">=18"

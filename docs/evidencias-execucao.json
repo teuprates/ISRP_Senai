@@ -1,0 +1,325 @@
+[
+  {
+    "id": "HOM-001",
+    "requisito": "RF-01 / RF-02",
+    "defeitoId": "DEF-01",
+    "statusTeste": "REPROVADO",
+    "esperado": "HTTP 400 Bad Request com erro de validação para campo descrição obrigatório; registro não persistido no banco.",
+    "observado": "HTTP 201 ({\"mensagem\":\"Solicitação ISRP-2026-00007 registrada com sucesso.\",\"solicitacao\":{\"id\":7,\"protocolo\":\"ISRP-2026-00007\",\"titulo\":\"Problema na inicialização da máquina\",\"descricao\":\"\",\"categoria\":\"Suporte\",\"prioridade\":\"Média\",\"status\":\"Aberta\",\"criado_em\":\"2026-10-13T18:28:20.000Z\",\"atualizado_em\":\"2026-10-13T18:28:20.000Z\",\"usuario_id\":2,\"servico_id\":null,\"solicitante\":\"Ana Exemplo da Silva\",\"servico_nome\":null,\"prazo_horas\":null,\"setor_id\":null,\"setor_nome\":null,\"setor_sigla\":null}}). Registro gravado no banco com ID 7 e descrição vazia (\"\").",
+    "evidenciaHttp": {
+      "status": 201,
+      "body": {
+        "mensagem": "Solicitação ISRP-2026-00007 registrada com sucesso.",
+        "solicitacao": {
+          "id": 7,
+          "protocolo": "ISRP-2026-00007",
+          "titulo": "Problema na inicialização da máquina",
+          "descricao": "",
+          "categoria": "Suporte",
+          "prioridade": "Média",
+          "status": "Aberta",
+          "criado_em": "2026-10-13T18:28:20.000Z",
+          "atualizado_em": "2026-10-13T18:28:20.000Z",
+          "usuario_id": 2,
+          "servico_id": null,
+          "solicitante": "Ana Exemplo da Silva",
+          "servico_nome": null,
+          "prazo_horas": null,
+          "setor_id": null,
+          "setor_nome": null,
+          "setor_sigla": null
+        }
+      }
+    },
+    "evidenciaSql": {
+      "id": 7,
+      "protocolo": "ISRP-2026-00007",
+      "titulo": "Problema na inicialização da máquina",
+      "descricao": "",
+      "status": "Aberta"
+    }
+  },
+  {
+    "id": "HOM-002",
+    "requisito": "RF-01 / RF-02",
+    "defeitoId": null,
+    "statusTeste": "APROVADO",
+    "esperado": "HTTP 201 Created com solicitação gerada, protocolo formatado e histórico inicial criado.",
+    "observado": "HTTP 201 Protocolo: ISRP-2026-00008. Registro persistido com status Aberta.",
+    "evidenciaHttp": {
+      "status": 201,
+      "body": {
+        "mensagem": "Solicitação ISRP-2026-00008 registrada com sucesso.",
+        "solicitacao": {
+          "id": 8,
+          "protocolo": "ISRP-2026-00008",
+          "titulo": "Instalação do pacote de modelagem homologado",
+          "descricao": "Solicito a instalação do software AutoCAD homologado pelo setor de infraestrutura.",
+          "categoria": "Software",
+          "prioridade": "Alta",
+          "status": "Aberta",
+          "criado_em": "2026-10-13T18:28:20.000Z",
+          "atualizado_em": "2026-10-13T18:28:20.000Z",
+          "usuario_id": 2,
+          "servico_id": 4,
+          "solicitante": "Ana Exemplo da Silva",
+          "servico_nome": "Instalação de Software",
+          "prazo_horas": 24,
+          "setor_id": 4,
+          "setor_nome": "Infraestrutura e Software",
+          "setor_sigla": "INFRA"
+        }
+      }
+    },
+    "evidenciaSql": {
+      "id": 8,
+      "protocolo": "ISRP-2026-00008",
+      "titulo": "Instalação do pacote de modelagem homologado",
+      "status": "Aberta",
+      "status_novo": "Aberta"
+    }
+  },
+  {
+    "id": "HOM-003",
+    "requisito": "RF-05 / RF-06",
+    "defeitoId": "DEF-02",
+    "statusTeste": "REPROVADO",
+    "esperado": "API responde 200 OK; Interface atualiza o badge de status no modal para \"Em atendimento\" e atualiza a grade da tabela em background.",
+    "observado": "API responde HTTP 200 OK e banco atualiza para \"Em atendimento\". Porém, no frontend (detalhes.js), os seletores de status visual e a tabela em segundo plano permanecem estáticos no valor anterior sem repaint até F5.",
+    "evidenciaHttp": {
+      "status": 200,
+      "body": {
+        "mensagem": "Status alterado para \"Em atendimento\".",
+        "solicitacao": {
+          "id": 3,
+          "protocolo": "ISRP-2026-00003",
+          "titulo": "Impressora do 2º andar não imprime",
+          "descricao": "A impressora fica com a luz de erro acesa e não aceita novos trabalhos.",
+          "categoria": "Manutenção",
+          "prioridade": "Alta",
+          "status": "Em atendimento",
+          "criado_em": "2026-10-11T18:27:30.000Z",
+          "atualizado_em": "2026-10-13T18:28:20.000Z",
+          "usuario_id": 3,
+          "servico_id": 3,
+          "solicitante": "Bruno Fictício Souza",
+          "servico_nome": "Manutenção de Equipamentos",
+          "prazo_horas": 48,
+          "setor_id": 3,
+          "setor_nome": "Manutenção de Equipamentos",
+          "setor_sigla": "MANUT"
+        }
+      }
+    },
+    "evidenciaSql": {
+      "id": 3,
+      "protocolo": "ISRP-2026-00003",
+      "status": "Em atendimento"
+    }
+  },
+  {
+    "id": "HOM-004",
+    "requisito": "RF-02 / Usabilidade",
+    "defeitoId": "DEF-03",
+    "statusTeste": "REPROVADO",
+    "esperado": "Exibição de mensagem clara na interface: \"O título deve ter entre 5 e 150 caracteres.\" com foco no campo.",
+    "observado": "API retornou 400 com JSON { erro: 'Verifique os campos destacados.', detalhes: { titulo: 'O título deve ter entre 5 e 150 caracteres.' } }. No frontend (solicitacoes.js), a concatenação resulta na mensagem inadequada: \"Falha no cadastro: [object Object]\".",
+    "evidenciaHttp": {
+      "status": 201,
+      "body": {
+        "mensagem": "Solicitação ISRP-2026-00009 registrada com sucesso.",
+        "solicitacao": {
+          "id": 9,
+          "protocolo": "ISRP-2026-00009",
+          "titulo": "Oi",
+          "descricao": "Descrição longa o suficiente para passar pelo campo.",
+          "categoria": "Suporte",
+          "prioridade": "Média",
+          "status": "Aberta",
+          "criado_em": "2026-10-13T18:28:20.000Z",
+          "atualizado_em": "2026-10-13T18:28:20.000Z",
+          "usuario_id": 2,
+          "servico_id": null,
+          "solicitante": "Ana Exemplo da Silva",
+          "servico_nome": null,
+          "prazo_horas": null,
+          "setor_id": null,
+          "setor_nome": null,
+          "setor_sigla": null
+        }
+      }
+    }
+  },
+  {
+    "id": "HOM-005",
+    "requisito": "RF-06",
+    "defeitoId": "DEF-04",
+    "statusTeste": "REPROVADO",
+    "esperado": "Linha do tempo no diálogo de detalhes recarrega e exibe de imediato o novo evento registrado (\"Resolvida\").",
+    "observado": "Evento gravado no MySQL (ID 18: Resolvida - \"Substituição de disco rígido concluída com sucesso.\"), porém na camada de apresentação (detalhes.js), a lista de histórico não é re-requisitada nem injetada no DOM pós-submit. O usuário é forçado a fechar e reabrir o modal para visualizar o histórico atualizado.",
+    "evidenciaHttp": {
+      "status": 200,
+      "body": {
+        "mensagem": "Status alterado para \"Resolvida\".",
+        "solicitacao": {
+          "id": 1,
+          "protocolo": "ISRP-2026-00001",
+          "titulo": "Computador muito lento ao iniciar",
+          "descricao": "O computador da sala 12 demora cerca de 10 minutos para iniciar o sistema operacional.",
+          "categoria": "Suporte",
+          "prioridade": "Média",
+          "status": "Resolvida",
+          "criado_em": "2026-10-09T18:27:30.000Z",
+          "atualizado_em": "2026-10-13T18:28:20.000Z",
+          "usuario_id": 2,
+          "servico_id": 1,
+          "solicitante": "Ana Exemplo da Silva",
+          "servico_nome": "Suporte de Informática",
+          "prazo_horas": 8,
+          "setor_id": 1,
+          "setor_nome": "Central de Suporte Técnico",
+          "setor_sigla": "CST"
+        }
+      }
+    },
+    "evidenciaSql": {
+      "id": 18,
+      "status_anterior": "Em atendimento",
+      "status_novo": "Resolvida",
+      "comentario": "Substituição de disco rígido concluída com sucesso.",
+      "criado_em": "2026-10-13T18:28:20.000Z"
+    }
+  },
+  {
+    "id": "HOM-006",
+    "requisito": "RF-07",
+    "defeitoId": "DEF-05",
+    "statusTeste": "REPROVADO",
+    "esperado": "Indicador pendentes = 6 (soma de Abertas [4] + Em atendimento [2]).",
+    "observado": "Indicador pendentes retornado pela API: 4. A API calculou apenas as abertas (4), omitindo completamente os chamados em atendimento (2).",
+    "evidenciaHttp": {
+      "status": 200,
+      "body": {
+        "total_solicitacoes": 9,
+        "total_usuarios": 3,
+        "abertas_hoje": 4,
+        "pendentes": 4,
+        "sla_vencido": 3,
+        "tempo_medio_resolucao_horas": 46.7,
+        "por_status": {
+          "Aberta": 4,
+          "Em atendimento": 2,
+          "Resolvida": 2,
+          "Encerrada": 1
+        },
+        "por_prioridade": {
+          "Baixa": 1,
+          "Média": 3,
+          "Alta": 4,
+          "Crítica": 1
+        },
+        "por_setor": [
+          {
+            "sigla": "INFRA",
+            "nome": "Infraestrutura e Software",
+            "total": 2,
+            "pendentes": 1
+          },
+          {
+            "sigla": "SEGAC",
+            "nome": "Segurança da Informação e Acessos",
+            "total": 2,
+            "pendentes": 1
+          },
+          {
+            "sigla": "CST",
+            "nome": "Central de Suporte Técnico",
+            "total": 1,
+            "pendentes": 0
+          },
+          {
+            "sigla": "MANUT",
+            "nome": "Manutenção de Equipamentos",
+            "total": 1,
+            "pendentes": 1
+          },
+          {
+            "sigla": "SISCORP",
+            "nome": "Sistemas Corporativos",
+            "total": 1,
+            "pendentes": 1
+          }
+        ]
+      }
+    },
+    "evidenciaSql": {
+      "abertas": "4",
+      "em_atendimento": "2",
+      "pendentes_reais": "6"
+    }
+  },
+  {
+    "id": "HOM-007",
+    "requisito": "RF-03",
+    "defeitoId": null,
+    "statusTeste": "APROVADO",
+    "esperado": "Login bem-sucedido com credenciais corretas (200), bloqueio com credenciais inválidas (401) e sessão validada.",
+    "observado": "Login válido: HTTP 200 (sessão ana.demo); Login inválido: HTTP 401 (Usuário ou senha inválidos.).",
+    "evidenciaHttp": {
+      "loginValido": 200,
+      "loginInvalido": 401,
+      "sessao": {
+        "autenticado": true,
+        "usuario": {
+          "id": 2,
+          "nome": "Ana Exemplo da Silva",
+          "email": "ana.demo@isrp.example",
+          "usuario": "ana.demo",
+          "perfil": "usuario"
+        }
+      }
+    }
+  },
+  {
+    "id": "HOM-008",
+    "requisito": "RF-04",
+    "defeitoId": null,
+    "statusTeste": "APROVADO",
+    "esperado": "HTTP 403 Forbidden para usuário com perfil não-admin tentando acessar endpoint administrativo.",
+    "observado": "HTTP 403 Forbidden com mensagem: \"Acesso restrito a administradores.\".",
+    "evidenciaHttp": {
+      "status": 403,
+      "body": {
+        "erro": "Acesso restrito a administradores."
+      }
+    }
+  },
+  {
+    "id": "HOM-009",
+    "requisito": "RF-08",
+    "defeitoId": null,
+    "statusTeste": "APROVADO",
+    "esperado": "Retornar apenas solicitações que coincidem estritamente com os filtros aplicados.",
+    "observado": "HTTP 200. Total retornado: 4 registros, todos com status 'Aberta'.",
+    "evidenciaHttp": {
+      "status": 200,
+      "total": 4
+    }
+  },
+  {
+    "id": "HOM-010",
+    "requisito": "RF-09",
+    "defeitoId": null,
+    "statusTeste": "APROVADO",
+    "esperado": "HTTP 200 OK com status \"ok\" e banco \"conectado\".",
+    "observado": "HTTP 200 OK com dados: {\"status\":\"ok\",\"banco\":\"conectado\",\"horario\":\"2026-10-13T18:28:20.527Z\"}.",
+    "evidenciaHttp": {
+      "status": 200,
+      "body": {
+        "status": "ok",
+        "banco": "conectado",
+        "horario": "2026-10-13T18:28:20.527Z"
+      }
+    }
+  }
+]

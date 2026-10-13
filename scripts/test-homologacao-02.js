@@ -76,6 +76,11 @@ async function run() {
   }, { login: 'admin', senha: 'Admin@123' });
   const cookieAdmin = parseCookie(resLoginAdmin.headers['set-cookie']);
 
+  // Garante estado inicial idempotente para as solicitações sob teste
+  await db.query("DELETE FROM solicitacoes WHERE titulo LIKE 'Problema na inicialização%' OR titulo LIKE 'Instalação do pacote%'");
+  await db.query("UPDATE solicitacoes SET status = 'Aberta' WHERE id = 3");
+  await db.query("UPDATE solicitacoes SET status = 'Em atendimento' WHERE id = 1");
+
   // =========================================================================
   // HOM-001: Validação de campo obrigatório (descrição vazia) [Re-teste DEF-01]
   // =========================================================================
