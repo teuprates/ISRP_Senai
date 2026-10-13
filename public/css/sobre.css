@@ -1,0 +1,18 @@
+/* ISRP - sobre */
+.sobre-grade { display: grid; gap: 1.2rem; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+.sobre-grade ul { padding-left: 1.2rem; margin: 0; }
+.sobre-grade li { margin-bottom: .35rem; }
+.secao-branca { background: var(--branco); border-block: 1px solid var(--borda); }
+.fluxo { list-style: none; padding: 0; margin: 0; display: grid; gap: 1rem; grid-template-columns: repeat(4, 1fr); counter-reset: etapa; }
+.fluxo li { position: relative; background: var(--azul-50); border: 1px solid var(--borda); border-radius: var(--raio); padding: 1rem; }
+.fluxo li:not(:last-child)::after {
+  content: "→"; position: absolute; right: -.95rem; top: 50%; transform: translateY(-50%);
+  color: var(--azul-700); font-weight: 800; font-size: 1.2rem;
+}
+.fluxo p { margin: .6rem 0 0; font-size: .92rem; color: var(--texto-suave); }
+.aviso-academico { border-left: 6px solid var(--azul-700); }
+
+@media (max-width: 820px) {
+  .fluxo { grid-template-columns: 1fr; }
+  .fluxo li:not(:last-child)::after { content: "↓"; right: 50%; top: auto; bottom: -1.3rem; transform: none; }
+}

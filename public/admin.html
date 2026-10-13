@@ -1,0 +1,291 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Painel Administrativo | ISRP</title>
+  <link rel="icon" href="/img/logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/solicitacoes.css">
+  <style>
+    .kpi-grade {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.2rem;
+      margin-bottom: 2rem;
+    }
+    .kpi-card {
+      background: var(--branco);
+      border-radius: var(--raio);
+      padding: 1.25rem;
+      border: 1px solid var(--borda);
+      box-shadow: var(--sombra);
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+    .kpi-titulo {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--texto-suave);
+      letter-spacing: 0.04em;
+    }
+    .kpi-valor {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--azul-900);
+      line-height: 1.1;
+    }
+    .kpi-detalhe {
+      font-size: 0.85rem;
+      color: var(--texto-suave);
+    }
+    .kpi-alerta {
+      border-left: 4px solid var(--erro);
+    }
+    .kpi-alerta .kpi-valor {
+      color: var(--erro);
+    }
+    .kpi-atencao {
+      border-left: 4px solid var(--alerta);
+    }
+    .kpi-atencao .kpi-valor {
+      color: var(--alerta);
+    }
+    .kpi-sucesso {
+      border-left: 4px solid var(--sucesso);
+    }
+    .kpi-sucesso .kpi-valor {
+      color: var(--sucesso);
+    }
+    .abas-painel {
+      display: flex;
+      gap: 0.5rem;
+      border-bottom: 2px solid var(--borda);
+      margin-bottom: 1.5rem;
+    }
+    .aba-btn {
+      padding: 0.75rem 1.4rem;
+      font-weight: 700;
+      background: transparent;
+      border: none;
+      border-bottom: 3px solid transparent;
+      color: var(--texto-suave);
+      cursor: pointer;
+      font-size: 0.95rem;
+    }
+    .aba-btn.ativo {
+      color: var(--azul-700);
+      border-bottom-color: var(--azul-700);
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo principal</a>
+  <header class="topo">
+    <div class="container topo-conteudo">
+      <a class="marca" href="/home.html" aria-label="ISRP - página inicial">
+        <img src="/img/logo.svg" alt="" width="42" height="42">
+        <span><strong>ISRP</strong><small>Sistema Integrado de Solicitações e Processos</small></span>
+      </a>
+      <button type="button" class="menu-toggle" aria-expanded="false" aria-controls="menu-principal">Menu</button>
+      <nav id="menu-principal" aria-label="Navegação principal">
+        <ul>
+          <li><a href="/home.html">Início</a></li>
+          <li><a href="/servicos.html">Serviços</a></li>
+          <li><a href="/setores.html">Setores</a></li>
+          <li><a href="/solicitacoes.html">Solicitações</a></li>
+          <li data-requer-admin><a href="/admin.html">Painel admin</a></li>
+          <li><a href="/sobre.html">Sobre</a></li>
+        </ul>
+        <div class="area-usuario" id="area-usuario"></div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="conteudo">
+    <section class="cabecalho-pagina">
+      <div class="container">
+        <h1>Painel de Gestão e Atendimento</h1>
+        <p>Visão geral de solicitações corporativas, controle de SLA, alteração de status e métricas pós-implantação (Hypercare).</p>
+      </div>
+    </section>
+
+    <section class="secao">
+      <div class="container">
+        <!-- Indicadores / KPIs -->
+        <div class="kpi-grade" id="kpis">
+          <div class="kpi-card">
+            <span class="kpi-titulo">Total de Solicitações</span>
+            <span class="kpi-valor" id="kpi-total">—</span>
+            <span class="kpi-detalhe">Abertas hoje: <strong id="kpi-hoje">0</strong></span>
+          </div>
+          <div class="kpi-card kpi-atencao">
+            <span class="kpi-titulo">Pendentes</span>
+            <span class="kpi-valor" id="kpi-pendentes">—</span>
+            <span class="kpi-detalhe">Aberta / Em atendimento</span>
+          </div>
+          <div class="kpi-card kpi-alerta">
+            <span class="kpi-titulo">SLA Vencido</span>
+            <span class="kpi-valor" id="kpi-sla">—</span>
+            <span class="kpi-detalhe">Prazo do serviço expirado</span>
+          </div>
+          <div class="kpi-card kpi-sucesso">
+            <span class="kpi-titulo">Tempo Médio Resolução</span>
+            <span class="kpi-valor" id="kpi-tempo">—</span>
+            <span class="kpi-detalhe">Horas até a solução</span>
+          </div>
+        </div>
+
+        <!-- Filtros e Tabela Geral de Atendimento -->
+        <h2 style="margin-bottom: 1rem;">Fila de Atendimento Geral</h2>
+        <form class="barra-filtros" id="form-filtros-admin" role="search" aria-label="Filtrar todas as solicitações">
+          <div class="form-grupo">
+            <label for="admin-busca">Buscar</label>
+            <input type="search" id="admin-busca" name="busca" placeholder="Título, protocolo ou solicitante">
+          </div>
+          <div class="form-grupo">
+            <label for="admin-status">Status</label>
+            <select id="admin-status" name="status">
+              <option value="">Todos os status</option>
+              <option>Aberta</option>
+              <option>Em atendimento</option>
+              <option>Resolvida</option>
+              <option>Encerrada</option>
+            </select>
+          </div>
+          <div class="form-grupo">
+            <label for="admin-prioridade">Prioridade</label>
+            <select id="admin-prioridade" name="prioridade">
+              <option value="">Todas</option>
+              <option>Baixa</option>
+              <option>Média</option>
+              <option>Alta</option>
+              <option>Crítica</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-secundario">Filtrar</button>
+        </form>
+
+        <div class="tabela-wrapper">
+          <table class="tabela-responsiva">
+            <caption>Solicitações de todos os setores</caption>
+            <thead>
+              <tr>
+                <th scope="col">Protocolo</th>
+                <th scope="col">Título</th>
+                <th scope="col">Solicitante</th>
+                <th scope="col">Setor / Serviço</th>
+                <th scope="col">Prioridade</th>
+                <th scope="col">Status</th>
+                <th scope="col">Abertura</th>
+                <th scope="col">Ações</th>
+              </tr>
+            </thead>
+            <tbody id="tabela-admin-solicitacoes">
+              <tr><td colspan="8" class="vazio">Carregando fila geral...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="rodape">
+    <div class="container rodape-conteudo">
+      <div class="rodape-bloco">
+        <p class="rodape-institucional">Projeto acadêmico fictício — "SENAI Serviços Digitais" é uma empresa fictícia, sem vínculo oficial.</p>
+        <p class="rodape-sub">Sistema Integrado de Solicitações e Processos (ISRP) · Avaliação e Apresentação Acadêmica</p>
+      </div>
+      <div class="rodape-contato">
+        <p><strong>Suporte Técnico Fictício</strong></p>
+        <p>E-mail: <a href="mailto:suporte@isrp.example">suporte@isrp.example</a> · Ramal: 2100</p>
+        <p>Atendimento: Segunda a Sexta, 8h às 18h</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/detalhes.js"></script>
+  <script>
+    (function() {
+      const { api, escapeHtml, badgeStatus, badgePrioridade, formatarData } = window.ISRP;
+
+      async function carregarKPIs() {
+        try {
+          const kpis = await api.get('/api/admin/indicadores');
+          document.getElementById('kpi-total').textContent = kpis.total_solicitacoes;
+          document.getElementById('kpi-hoje').textContent = kpis.abertas_hoje;
+          document.getElementById('kpi-pendentes').textContent = kpis.pendentes;
+          document.getElementById('kpi-sla').textContent = kpis.sla_vencido;
+          document.getElementById('kpi-tempo').textContent = kpis.tempo_medio_resolucao_horas !== null ? kpis.tempo_medio_resolucao_horas + 'h' : '—';
+        } catch(e) {
+          console.error('Falha ao carregar KPIs:', e);
+        }
+      }
+
+      async function carregarFila() {
+        const tbody = document.getElementById('tabela-admin-solicitacoes');
+        tbody.innerHTML = '<tr><td colspan="8" class="vazio">Carregando fila geral...</td></tr>';
+
+        const busca = document.getElementById('admin-busca').value.trim();
+        const status = document.getElementById('admin-status').value;
+        const prioridade = document.getElementById('admin-prioridade').value;
+
+        const params = new URLSearchParams();
+        if (busca) params.append('busca', busca);
+        if (status) params.append('status', status);
+        if (prioridade) params.append('prioridade', prioridade);
+
+        try {
+          const lista = await api.get('/api/solicitacoes?' + params.toString());
+          if (!lista.length) {
+            tbody.innerHTML = '<tr><td colspan="8" class="vazio">Nenhuma solicitação encontrada nos filtros.</td></tr>';
+            return;
+          }
+
+          tbody.innerHTML = lista.map(s => `
+            <tr>
+              <td class="protocolo" data-rotulo="Protocolo">${escapeHtml(s.protocolo)}</td>
+              <td class="titulo-col" data-rotulo="Título"><strong>${escapeHtml(s.titulo)}</strong></td>
+              <td data-rotulo="Solicitante">${escapeHtml(s.solicitante)}</td>
+              <td data-rotulo="Setor / Serviço">${escapeHtml(s.setor_sigla || '—')} <span class="sub">${escapeHtml(s.servico_nome || s.categoria)}</span></td>
+              <td data-rotulo="Prioridade">${badgePrioridade(s.prioridade)}</td>
+              <td data-rotulo="Status">${badgeStatus(s.status)}</td>
+              <td data-rotulo="Abertura">${formatarData(s.criado_em)}</td>
+              <td data-rotulo="Ações">
+                <button type="button" class="btn btn-primario btn-pequeno btn-gerenciar" data-id="${s.id}">Atender / Status</button>
+              </td>
+            </tr>
+          `).join('');
+
+          tbody.querySelectorAll('.btn-gerenciar').forEach(btn => {
+            btn.addEventListener('click', () => {
+              window.ISRP.detalhes.abrir(Number(btn.dataset.id), {
+                admin: true,
+                origem: btn,
+                onAtualizado: () => {
+                  carregarKPIs();
+                  carregarFila();
+                }
+              });
+            });
+          });
+        } catch(err) {
+          tbody.innerHTML = `<tr><td colspan="8" class="mensagem erro">${escapeHtml(err.message)}</td></tr>`;
+        }
+      }
+
+      document.addEventListener('DOMContentLoaded', () => {
+        carregarKPIs();
+        carregarFila();
+        document.getElementById('form-filtros-admin').addEventListener('submit', (e) => {
+          e.preventDefault();
+          carregarFila();
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Setores | ISRP</title>
+  <link rel="icon" href="/img/logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/setores.css">
+</head>
+<body>
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo principal</a>
+  <header class="topo">
+    <div class="container topo-conteudo">
+      <a class="marca" href="/home.html" aria-label="ISRP - página inicial">
+        <img src="/img/logo.svg" alt="" width="42" height="42">
+        <span><strong>ISRP</strong><small>Sistema Integrado de Solicitações e Processos</small></span>
+      </a>
+      <button type="button" class="menu-toggle" aria-expanded="false" aria-controls="menu-principal">Menu</button>
+      <nav id="menu-principal" aria-label="Navegação principal">
+        <ul>
+          <li><a href="/home.html">Início</a></li>
+          <li><a href="/servicos.html">Serviços</a></li>
+          <li><a href="/setores.html">Setores</a></li>
+          <li><a href="/solicitacoes.html">Solicitações</a></li>
+          <li data-requer-admin hidden><a href="/admin.html">Painel admin</a></li>
+          <li><a href="/sobre.html">Sobre</a></li>
+        </ul>
+        <div class="area-usuario" id="area-usuario"></div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="conteudo">
+    <section class="cabecalho-pagina">
+      <div class="container">
+        <h1>Setores responsáveis</h1>
+        <p>Conheça as equipes (fictícias) que atendem as solicitações, suas responsabilidades e os serviços sob sua gestão.</p>
+      </div>
+    </section>
+    <section class="secao">
+      <div class="container lista-setores" id="lista-setores" aria-live="polite">
+        <p class="carregando">Carregando setores...</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="rodape">
+    <div class="container rodape-conteudo">
+      <div class="rodape-bloco">
+        <p class="rodape-institucional">Projeto acadêmico fictício — "SENAI Serviços Digitais" é uma empresa fictícia, sem vínculo oficial.</p>
+        <p class="rodape-sub">Sistema Integrado de Solicitações e Processos (ISRP) · Avaliação e Apresentação Acadêmica</p>
+      </div>
+      <div class="rodape-contato">
+        <p><strong>Suporte Técnico Fictício</strong></p>
+        <p>E-mail: <a href="mailto:suporte@isrp.example">suporte@isrp.example</a> · Ramal: 2100</p>
+        <p>Atendimento: Segunda a Sexta, 8h às 18h</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/setores.js"></script>
+</body>
+</html>

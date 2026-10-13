@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 360" role="img" aria-labelledby="t d">
+  <title id="t">Ilustração do fluxo de solicitações</title>
+  <desc id="d">Painel com cartões de solicitação passando pelos status aberta, em atendimento e resolvida.</desc>
+  <rect x="20" y="30" width="440" height="300" rx="20" fill="#ffffff" opacity="0.12"/>
+  <rect x="44" y="56" width="392" height="248" rx="14" fill="#ffffff"/>
+  <rect x="44" y="56" width="392" height="40" rx="14" fill="#e8f1fc"/>
+  <circle cx="68" cy="76" r="6" fill="#0b4f9c"/><circle cx="88" cy="76" r="6" fill="#7fb2ea"/><circle cx="108" cy="76" r="6" fill="#c9def7"/>
+  <g font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="700">
+    <text x="66" y="124" fill="#0b4f9c">Aberta</text>
+    <text x="194" y="124" fill="#8a5a00">Em atendimento</text>
+    <text x="334" y="124" fill="#1f7a3d">Resolvida</text>
+  </g>
+  <g>
+    <rect x="62" y="136" width="112" height="56" rx="8" fill="#e8f1fc" stroke="#0b4f9c"/>
+    <rect x="74" y="150" width="70" height="7" rx="3.5" fill="#0b4f9c"/><rect x="74" y="166" width="50" height="7" rx="3.5" fill="#7fb2ea"/>
+    <rect x="62" y="204" width="112" height="56" rx="8" fill="#e8f1fc" stroke="#0b4f9c"/>
+    <rect x="74" y="218" width="80" height="7" rx="3.5" fill="#0b4f9c"/><rect x="74" y="234" width="40" height="7" rx="3.5" fill="#7fb2ea"/>
+    <rect x="190" y="136" width="120" height="56" rx="8" fill="#fff4dc" stroke="#c98a00"/>
+    <rect x="202" y="150" width="76" height="7" rx="3.5" fill="#c98a00"/><rect x="202" y="166" width="56" height="7" rx="3.5" fill="#f0c86a"/>
+    <rect x="326" y="136" width="94" height="56" rx="8" fill="#e5f5ea" stroke="#1f7a3d"/>
+    <rect x="338" y="150" width="60" height="7" rx="3.5" fill="#1f7a3d"/><rect x="338" y="166" width="40" height="7" rx="3.5" fill="#8fd1a5"/>
+    <circle cx="404" cy="242" r="26" fill="#1f7a3d"/>
+    <path d="M392 243l8 8 16-17" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <path d="M178 164h8M314 164h8" stroke="#5c6b80" stroke-width="3" stroke-linecap="round"/>
+</svg>

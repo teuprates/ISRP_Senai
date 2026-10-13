@@ -1,0 +1,83 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Entrar | ISRP</title>
+  <link rel="icon" href="/img/logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/login.css">
+</head>
+<body>
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo principal</a>
+  <header class="topo">
+    <div class="container topo-conteudo">
+      <a class="marca" href="/home.html" aria-label="ISRP - página inicial">
+        <img src="/img/logo.svg" alt="" width="42" height="42">
+        <span><strong>ISRP</strong><small>Sistema Integrado de Solicitações e Processos</small></span>
+      </a>
+      <button type="button" class="menu-toggle" aria-expanded="false" aria-controls="menu-principal">Menu</button>
+      <nav id="menu-principal" aria-label="Navegação principal">
+        <ul>
+          <li><a href="/home.html">Início</a></li>
+          <li><a href="/servicos.html">Serviços</a></li>
+          <li><a href="/setores.html">Setores</a></li>
+          <li><a href="/solicitacoes.html">Solicitações</a></li>
+          <li data-requer-admin hidden><a href="/admin.html">Painel admin</a></li>
+          <li><a href="/sobre.html">Sobre</a></li>
+        </ul>
+        <div class="area-usuario" id="area-usuario"></div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="conteudo" class="auth-pagina">
+    <section class="auth-card card" aria-labelledby="titulo-login">
+      <img src="/img/logo.svg" alt="" width="56" height="56" class="auth-logo">
+      <h1 id="titulo-login">Entrar no ISRP</h1>
+      <p class="auth-sub">Acesse para registrar e acompanhar suas solicitações.</p>
+
+      <div id="mensagem-login" class="mensagem" role="alert" aria-live="assertive"></div>
+
+      <form id="form-login" novalidate>
+        <div class="form-grupo">
+          <label for="login">Usuário ou e-mail <span class="obrigatorio" aria-hidden="true">*</span></label>
+          <input type="text" id="login" name="login" autocomplete="username" required maxlength="160">
+        </div>
+        <div class="form-grupo">
+          <label for="senha">Senha <span class="obrigatorio" aria-hidden="true">*</span></label>
+          <div class="campo-senha">
+            <input type="password" id="senha" name="senha" autocomplete="current-password" required>
+            <button type="button" class="btn-link mostrar-senha" aria-controls="senha" aria-pressed="false">Mostrar</button>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primario btn-bloco" id="btn-entrar">Entrar</button>
+      </form>
+
+      <p class="auth-rodape">Ainda não tem conta? <a href="/cadastro.html">Cadastre-se</a></p>
+      <details class="auth-demo">
+        <summary>Credenciais fictícias de demonstração</summary>
+        <p>Administrador: <code>admin</code> / <code>Admin@123</code><br>Usuário: <code>ana.demo</code> / <code>Usuario@123</code></p>
+        <p class="dica">Uso exclusivamente acadêmico. Altere ou remova antes de qualquer uso real.</p>
+      </details>
+    </section>
+  </main>
+
+  <footer class="rodape">
+    <div class="container rodape-conteudo">
+      <div class="rodape-bloco">
+        <p class="rodape-institucional">Projeto acadêmico fictício — "SENAI Serviços Digitais" é uma empresa fictícia, sem vínculo oficial.</p>
+        <p class="rodape-sub">Sistema Integrado de Solicitações e Processos (ISRP) · Avaliação e Apresentação Acadêmica</p>
+      </div>
+      <div class="rodape-contato">
+        <p><strong>Suporte Técnico Fictício</strong></p>
+        <p>E-mail: <a href="mailto:suporte@isrp.example">suporte@isrp.example</a> · Ramal: 2100</p>
+        <p>Atendimento: Segunda a Sexta, 8h às 18h</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/login.js"></script>
+</body>
+</html>

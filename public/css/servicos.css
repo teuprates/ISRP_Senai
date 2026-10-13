@@ -1,0 +1,20 @@
+/* ISRP - catálogo de serviços */
+.filtros { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: 1rem; }
+.filtro {
+  font: inherit; font-size: .9rem; font-weight: 600; padding: .45rem .95rem; border-radius: 999px; cursor: pointer;
+  background: var(--branco); color: var(--azul-800); border: 1.5px solid var(--azul-300);
+}
+.filtro:hover { background: var(--azul-100); }
+.filtro[aria-pressed="true"] { background: var(--azul-700); color: var(--branco); border-color: var(--azul-700); }
+.contador { color: var(--texto-suave); font-size: .9rem; }
+
+.card-servico { display: flex; flex-direction: column; gap: .8rem; transition: box-shadow .15s, transform .15s; }
+.card-servico:hover { box-shadow: var(--sombra-forte); transform: translateY(-2px); }
+.card-servico-topo { display: flex; gap: .9rem; align-items: center; }
+.card-servico h2 { font-size: 1.15rem; margin: 0; }
+.card-servico .categoria { font-size: .78rem; text-transform: uppercase; letter-spacing: .05em; color: var(--texto-suave); font-weight: 700; }
+.card-servico p { margin: 0; color: var(--texto-suave); flex: 1; }
+.meta-servico { list-style: none; margin: 0; padding: .7rem 0 0; border-top: 1px solid var(--borda); display: grid; gap: .3rem; font-size: .9rem; }
+.meta-servico li { display: flex; gap: .4rem; align-items: center; }
+.meta-servico .icone { width: 18px; height: 18px; color: var(--azul-700); }
+.card-servico .btn { align-self: flex-start; }

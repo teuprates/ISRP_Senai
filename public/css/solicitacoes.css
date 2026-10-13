@@ -1,0 +1,33 @@
+/* ISRP - solicitações (também usado como base visual do painel admin) */
+.cabecalho-flex { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; }
+.secao-form { padding-bottom: 0; }
+.acoes-form { display: flex; gap: .6rem; flex-wrap: wrap; }
+
+.barra-filtros {
+  display: grid; grid-template-columns: 2fr 1fr 1fr auto; gap: .8rem; align-items: end;
+  background: var(--branco); border: 1px solid var(--borda); border-radius: var(--raio); padding: 1rem; margin-bottom: 1rem;
+}
+.barra-filtros .form-grupo { margin: 0; }
+.barra-filtros .btn { height: 46px; }
+
+td.protocolo { font-family: Consolas, "Courier New", monospace; font-size: .86rem; white-space: nowrap; color: var(--azul-800); font-weight: 600; }
+td .sub { display: block; font-size: .8rem; color: var(--texto-suave); }
+td.titulo-col { min-width: 200px; }
+
+.form-status { background: var(--azul-50); border: 1px solid var(--borda); border-radius: 8px; padding: 1rem; margin: 1rem 0; }
+.form-status h3 { margin-top: 0; }
+
+/* Tabela vira lista de cartões no celular */
+@media (max-width: 760px) {
+  .barra-filtros { grid-template-columns: 1fr 1fr; }
+  .barra-filtros .form-grupo:first-child { grid-column: 1 / -1; }
+  .barra-filtros .btn { grid-column: 1 / -1; }
+  .tabela-responsiva thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  .tabela-responsiva, .tabela-responsiva tbody, .tabela-responsiva tr, .tabela-responsiva td { display: block; width: 100%; }
+  .tabela-responsiva tr { border-bottom: 6px solid var(--azul-50); padding: .4rem 0; }
+  .tabela-responsiva td { border: 0; padding: .3rem .9rem; display: flex; gap: .6rem; justify-content: space-between; align-items: center; }
+  .tabela-responsiva td::before { content: attr(data-rotulo); font-weight: 700; color: var(--texto-suave); font-size: .8rem; text-transform: uppercase; }
+  .tabela-responsiva td.vazio { display: block; }
+  .tabela-responsiva td.vazio::before { content: none; }
+  td.titulo-col { min-width: 0; text-align: right; }
+}

@@ -1,0 +1,24 @@
+{
+  "name": "isrp",
+  "version": "1.0.0",
+  "description": "ISRP - Sistema Integrado de Solicitações e Processos (projeto acadêmico fictício)",
+  "main": "server.js",
+  "private": true,
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "db:init": "node scripts/init-db.js",
+    "homologacao": "node scripts/homologacao.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "UNLICENSED",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^18.0.7",
+    "express": "^5.3.0",
+    "express-session": "^1.19.0",
+    "mysql2": "^3.24.5"
+  }
+}

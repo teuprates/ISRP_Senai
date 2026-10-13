@@ -1,0 +1,11 @@
+/* ISRP - cadastro (complementa login.css) */
+.cadastro-card { width: min(620px, 100%); }
+.forca-senha { margin: -.3rem 0 1rem; }
+.forca-senha span {
+  display: block; height: 6px; border-radius: 3px; background: var(--borda); margin-bottom: .3rem; position: relative; overflow: hidden;
+}
+.forca-senha span::after {
+  content: ""; position: absolute; inset: 0 auto 0 0; width: var(--forca, 0%); background: var(--cor-forca, var(--erro));
+  transition: width .2s;
+}
+.forca-senha small { color: var(--texto-suave); }

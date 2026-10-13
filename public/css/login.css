@@ -1,0 +1,18 @@
+/* ISRP - login (layout de autenticação também reutilizado pelo cadastro) */
+.auth-pagina {
+  display: grid; place-items: center; padding: 2.5rem 1rem;
+  background: radial-gradient(circle at top, var(--azul-100), var(--azul-50) 60%);
+}
+.auth-card { width: min(440px, 100%); padding: 2rem; }
+.auth-card h1 { text-align: center; font-size: 1.6rem; margin-bottom: .3rem; }
+.auth-logo { display: block; margin: 0 auto .8rem; }
+.auth-sub { text-align: center; color: var(--texto-suave); margin-bottom: 1.4rem; }
+.btn-bloco { width: 100%; margin-top: .4rem; padding-block: .85rem; }
+.auth-rodape { text-align: center; margin: 1.2rem 0 0; }
+.campo-senha { position: relative; }
+.campo-senha input { padding-right: 5.5rem; }
+.mostrar-senha { position: absolute; right: .8rem; top: 50%; transform: translateY(-50%); font-size: .85rem; font-weight: 600; }
+.auth-demo { margin-top: 1.2rem; background: var(--azul-50); border: 1px dashed var(--azul-300); border-radius: 8px; padding: .6rem .9rem; font-size: .9rem; }
+.auth-demo summary { cursor: pointer; font-weight: 600; color: var(--azul-800); }
+.auth-demo p { margin: .6rem 0 0; }
+code { background: var(--azul-100); padding: .05rem .35rem; border-radius: 4px; font-size: .88em; }

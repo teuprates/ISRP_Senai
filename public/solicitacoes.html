@@ -1,0 +1,170 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Solicitações | ISRP</title>
+  <link rel="icon" href="/img/logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/solicitacoes.css">
+</head>
+<body>
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo principal</a>
+  <header class="topo">
+    <div class="container topo-conteudo">
+      <a class="marca" href="/home.html" aria-label="ISRP - página inicial">
+        <img src="/img/logo.svg" alt="" width="42" height="42">
+        <span><strong>ISRP</strong><small>Sistema Integrado de Solicitações e Processos</small></span>
+      </a>
+      <button type="button" class="menu-toggle" aria-expanded="false" aria-controls="menu-principal">Menu</button>
+      <nav id="menu-principal" aria-label="Navegação principal">
+        <ul>
+          <li><a href="/home.html">Início</a></li>
+          <li><a href="/servicos.html">Serviços</a></li>
+          <li><a href="/setores.html">Setores</a></li>
+          <li><a href="/solicitacoes.html">Solicitações</a></li>
+          <li data-requer-admin hidden><a href="/admin.html">Painel admin</a></li>
+          <li><a href="/sobre.html">Sobre</a></li>
+        </ul>
+        <div class="area-usuario" id="area-usuario"></div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="conteudo">
+    <section class="cabecalho-pagina">
+      <div class="container cabecalho-flex">
+        <div>
+          <h1>Minhas solicitações</h1>
+          <p>Registre novos pedidos e acompanhe o andamento e o histórico de cada solicitação.</p>
+        </div>
+        <button type="button" class="btn btn-claro" id="btn-nova" aria-expanded="false" aria-controls="nova">+ Nova solicitação</button>
+      </div>
+    </section>
+
+    <div class="container">
+      <div id="mensagem-pagina" class="mensagem" role="status" aria-live="polite" style="margin-top:1.2rem"></div>
+    </div>
+
+    <section class="secao secao-form" id="nova" hidden aria-labelledby="titulo-nova">
+      <div class="container">
+        <div class="card">
+          <h2 id="titulo-nova">Nova solicitação</h2>
+          <div id="mensagem-nova" class="mensagem" role="alert" aria-live="assertive"></div>
+          <form id="form-nova" novalidate>
+            <div class="form-linha">
+              <div class="form-grupo">
+                <label for="servico_id">Serviço</label>
+                <select id="servico_id" name="servico_id">
+                  <option value="">Selecione o serviço (opcional)</option>
+                </select>
+                <p class="dica" id="dica-setor">O setor responsável será definido pelo serviço.</p>
+              </div>
+              <div class="form-grupo">
+                <label for="categoria">Categoria <span class="obrigatorio" aria-hidden="true">*</span></label>
+                <select id="categoria" name="categoria" required>
+                  <option value="">Selecione...</option>
+                  <option>Suporte</option>
+                  <option>Acesso</option>
+                  <option>Manutenção</option>
+                  <option>Software</option>
+                  <option>Sistemas</option>
+                  <option>Outros</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-linha">
+              <div class="form-grupo">
+                <label for="titulo">Título <span class="obrigatorio" aria-hidden="true">*</span></label>
+                <input type="text" id="titulo" name="titulo" required minlength="5" maxlength="150" placeholder="Resumo do problema ou pedido">
+              </div>
+              <div class="form-grupo">
+                <label for="prioridade">Prioridade <span class="obrigatorio" aria-hidden="true">*</span></label>
+                <select id="prioridade" name="prioridade" required>
+                  <option value="Baixa">Baixa</option>
+                  <option value="Média" selected>Média</option>
+                  <option value="Alta">Alta</option>
+                  <option value="Crítica">Crítica</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-grupo">
+              <label for="descricao">Descrição <span class="obrigatorio" aria-hidden="true">*</span></label>
+              <textarea id="descricao" name="descricao" required minlength="10" maxlength="5000" placeholder="Descreva o que aconteceu, onde e desde quando."></textarea>
+            </div>
+            <div class="acoes-form">
+              <button type="submit" class="btn btn-primario" id="btn-enviar">Registrar solicitação</button>
+              <button type="button" class="btn btn-secundario" id="btn-cancelar">Cancelar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="secao" aria-labelledby="titulo-lista">
+      <div class="container">
+        <h2 id="titulo-lista" class="visually-hidden">Lista de solicitações</h2>
+        <form class="barra-filtros" id="form-filtros" role="search" aria-label="Filtrar solicitações">
+          <div class="form-grupo">
+            <label for="filtro-busca">Buscar</label>
+            <input type="search" id="filtro-busca" name="busca" placeholder="Título ou protocolo">
+          </div>
+          <div class="form-grupo">
+            <label for="filtro-status">Status</label>
+            <select id="filtro-status" name="status">
+              <option value="">Todos</option>
+              <option>Aberta</option><option>Em atendimento</option><option>Resolvida</option><option>Encerrada</option>
+            </select>
+          </div>
+          <div class="form-grupo">
+            <label for="filtro-prioridade">Prioridade</label>
+            <select id="filtro-prioridade" name="prioridade">
+              <option value="">Todas</option>
+              <option>Baixa</option><option>Média</option><option>Alta</option><option>Crítica</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-secundario">Filtrar</button>
+        </form>
+
+        <div class="tabela-wrapper">
+          <table>
+            <caption id="legenda-tabela">Solicitações registradas</caption>
+            <thead>
+              <tr>
+                <th scope="col">Protocolo</th>
+                <th scope="col">Título</th>
+                <th scope="col">Serviço / Setor</th>
+                <th scope="col">Prioridade</th>
+                <th scope="col">Status</th>
+                <th scope="col">Aberta em</th>
+                <th scope="col"><span class="visually-hidden">Ações</span></th>
+              </tr>
+            </thead>
+            <tbody id="tabela-solicitacoes">
+              <tr><td colspan="7" class="vazio">Carregando...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="rodape">
+    <div class="container rodape-conteudo">
+      <div class="rodape-bloco">
+        <p class="rodape-institucional">Projeto acadêmico fictício — "SENAI Serviços Digitais" é uma empresa fictícia, sem vínculo oficial.</p>
+        <p class="rodape-sub">Sistema Integrado de Solicitações e Processos (ISRP) · Avaliação e Apresentação Acadêmica</p>
+      </div>
+      <div class="rodape-contato">
+        <p><strong>Suporte Técnico Fictício</strong></p>
+        <p>E-mail: <a href="mailto:suporte@isrp.example">suporte@isrp.example</a> · Ramal: 2100</p>
+        <p>Atendimento: Segunda a Sexta, 8h às 18h</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/detalhes.js"></script>
+  <script src="/js/solicitacoes.js"></script>
+</body>
+</html>

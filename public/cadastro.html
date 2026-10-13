@@ -1,0 +1,91 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cadastro | ISRP</title>
+  <link rel="icon" href="/img/logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/login.css">
+  <link rel="stylesheet" href="/css/cadastro.css">
+</head>
+<body>
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo principal</a>
+  <header class="topo">
+    <div class="container topo-conteudo">
+      <a class="marca" href="/home.html" aria-label="ISRP - página inicial">
+        <img src="/img/logo.svg" alt="" width="42" height="42">
+        <span><strong>ISRP</strong><small>Sistema Integrado de Solicitações e Processos</small></span>
+      </a>
+      <button type="button" class="menu-toggle" aria-expanded="false" aria-controls="menu-principal">Menu</button>
+      <nav id="menu-principal" aria-label="Navegação principal">
+        <ul>
+          <li><a href="/home.html">Início</a></li>
+          <li><a href="/servicos.html">Serviços</a></li>
+          <li><a href="/setores.html">Setores</a></li>
+          <li><a href="/solicitacoes.html">Solicitações</a></li>
+          <li data-requer-admin hidden><a href="/admin.html">Painel admin</a></li>
+          <li><a href="/sobre.html">Sobre</a></li>
+        </ul>
+        <div class="area-usuario" id="area-usuario"></div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="conteudo" class="auth-pagina">
+    <section class="auth-card card cadastro-card" aria-labelledby="titulo-cadastro">
+      <h1 id="titulo-cadastro">Criar conta</h1>
+      <p class="auth-sub">Preencha os dados abaixo. Campos com <span class="obrigatorio">*</span> são obrigatórios.</p>
+
+      <div id="mensagem-cadastro" class="mensagem" role="alert" aria-live="assertive"></div>
+
+      <form id="form-cadastro" novalidate>
+        <div class="form-grupo">
+          <label for="nome">Nome completo <span class="obrigatorio" aria-hidden="true">*</span></label>
+          <input type="text" id="nome" name="nome" autocomplete="name" required minlength="3" maxlength="120">
+        </div>
+        <div class="form-grupo">
+          <label for="email">E-mail <span class="obrigatorio" aria-hidden="true">*</span></label>
+          <input type="email" id="email" name="email" autocomplete="email" required maxlength="160">
+        </div>
+        <div class="form-grupo">
+          <label for="usuario">Nome de usuário <span class="obrigatorio" aria-hidden="true">*</span></label>
+          <input type="text" id="usuario" name="usuario" autocomplete="username" required minlength="3" maxlength="40" aria-describedby="dica-usuario">
+          <p class="dica" id="dica-usuario">3 a 40 caracteres: letras, números, ponto, hífen ou sublinhado.</p>
+        </div>
+        <div class="form-linha">
+          <div class="form-grupo">
+            <label for="senha">Senha <span class="obrigatorio" aria-hidden="true">*</span></label>
+            <input type="password" id="senha" name="senha" autocomplete="new-password" required minlength="8" aria-describedby="dica-senha">
+            <p class="dica" id="dica-senha">Mínimo de 8 caracteres, com letras e números.</p>
+          </div>
+          <div class="form-grupo">
+            <label for="confirmacao">Confirmação da senha <span class="obrigatorio" aria-hidden="true">*</span></label>
+            <input type="password" id="confirmacao" name="confirmacao" autocomplete="new-password" required>
+          </div>
+        </div>
+        <div class="forca-senha" aria-live="polite"><span id="forca-barra"></span><small id="forca-texto">Força da senha: —</small></div>
+        <button type="submit" class="btn btn-primario btn-bloco" id="btn-cadastrar">Cadastrar</button>
+      </form>
+      <p class="auth-rodape">Já possui conta? <a href="/login.html">Entrar</a></p>
+    </section>
+  </main>
+
+  <footer class="rodape">
+    <div class="container rodape-conteudo">
+      <div class="rodape-bloco">
+        <p class="rodape-institucional">Projeto acadêmico fictício — "SENAI Serviços Digitais" é uma empresa fictícia, sem vínculo oficial.</p>
+        <p class="rodape-sub">Sistema Integrado de Solicitações e Processos (ISRP) · Avaliação e Apresentação Acadêmica</p>
+      </div>
+      <div class="rodape-contato">
+        <p><strong>Suporte Técnico Fictício</strong></p>
+        <p>E-mail: <a href="mailto:suporte@isrp.example">suporte@isrp.example</a> · Ramal: 2100</p>
+        <p>Atendimento: Segunda a Sexta, 8h às 18h</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/cadastro.js"></script>
+</body>
+</html>

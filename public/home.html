@@ -1,0 +1,113 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="ISRP - Sistema Integrado de Solicitações e Processos (projeto acadêmico fictício).">
+  <title>Início | ISRP - Sistema Integrado de Solicitações e Processos</title>
+  <link rel="icon" href="/img/logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/home.css">
+</head>
+<body>
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo principal</a>
+  <header class="topo">
+    <div class="container topo-conteudo">
+      <a class="marca" href="/home.html" aria-label="ISRP - página inicial">
+        <img src="/img/logo.svg" alt="" width="42" height="42">
+        <span><strong>ISRP</strong><small>Sistema Integrado de Solicitações e Processos</small></span>
+      </a>
+      <button type="button" class="menu-toggle" aria-expanded="false" aria-controls="menu-principal">Menu</button>
+      <nav id="menu-principal" aria-label="Navegação principal">
+        <ul>
+          <li><a href="/home.html">Início</a></li>
+          <li><a href="/servicos.html">Serviços</a></li>
+          <li><a href="/setores.html">Setores</a></li>
+          <li><a href="/solicitacoes.html">Solicitações</a></li>
+          <li data-requer-admin hidden><a href="/admin.html">Painel admin</a></li>
+          <li><a href="/sobre.html">Sobre</a></li>
+        </ul>
+        <div class="area-usuario" id="area-usuario"></div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="conteudo">
+    <section class="hero" aria-labelledby="titulo-hero">
+      <div class="container hero-conteudo">
+        <div class="hero-texto">
+          <p class="sobretitulo">SENAI Serviços Digitais · Central de atendimento interno</p>
+          <h1 id="titulo-hero">Solicite, acompanhe e resolva com o ISRP</h1>
+          <p class="hero-descricao">
+            O Sistema Integrado de Solicitações e Processos reúne em um só lugar os serviços de tecnologia
+            da empresa. Registre pedidos, acompanhe cada etapa do atendimento e saiba qual setor é responsável.
+          </p>
+          <div id="mensagem-home" class="mensagem" role="status" aria-live="polite"></div>
+          <div class="hero-acoes" id="hero-acoes">
+            <a class="btn btn-claro" href="/login.html">Entrar</a>
+            <a class="btn btn-contorno-claro" href="/cadastro.html">Cadastrar-se</a>
+            <a class="btn btn-contorno-claro" href="/servicos.html">Consultar serviços</a>
+          </div>
+        </div>
+        <img class="hero-imagem" src="/img/hero-fluxo.svg" alt="Ilustração de cartões de solicitação passando pelos status Aberta, Em atendimento e Resolvida" width="480" height="360">
+      </div>
+    </section>
+
+    <section class="secao" aria-labelledby="titulo-servicos">
+      <div class="container">
+        <div class="secao-topo">
+          <div>
+            <h2 id="titulo-servicos">Serviços disponíveis</h2>
+            <p>Conheça os principais serviços atendidos pelos setores da empresa.</p>
+          </div>
+          <a class="btn btn-secundario" href="/servicos.html">Ver todos os serviços</a>
+        </div>
+        <div class="grade" id="resumo-servicos" aria-live="polite">
+          <p class="carregando">Carregando serviços...</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="secao secao-branca" aria-labelledby="titulo-como">
+      <div class="container">
+        <h2 id="titulo-como">Como funciona</h2>
+        <ol class="passos">
+          <li><strong>Cadastre-se</strong><span>Crie sua conta com nome, e-mail e usuário.</span></li>
+          <li><strong>Escolha o serviço</strong><span>Selecione o serviço e descreva a necessidade.</span></li>
+          <li><strong>Acompanhe</strong><span>Veja o status e o histórico de cada alteração.</span></li>
+          <li><strong>Conclusão</strong><span>A solicitação é resolvida e encerrada pelo setor.</span></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="secao" aria-labelledby="titulo-status">
+      <div class="container">
+        <h2 id="titulo-status">Status das solicitações</h2>
+        <ul class="legenda-status">
+          <li><span class="badge status-aberta">Aberta</span> Registrada e aguardando triagem.</li>
+          <li><span class="badge status-em-atendimento">Em atendimento</span> Um técnico está trabalhando no pedido.</li>
+          <li><span class="badge status-resolvida">Resolvida</span> Solução aplicada, aguardando confirmação.</li>
+          <li><span class="badge status-encerrada">Encerrada</span> Atendimento finalizado.</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="rodape">
+    <div class="container rodape-conteudo">
+      <div class="rodape-bloco">
+        <p class="rodape-institucional">Projeto acadêmico fictício — "SENAI Serviços Digitais" é uma empresa fictícia, sem vínculo oficial.</p>
+        <p class="rodape-sub">Sistema Integrado de Solicitações e Processos (ISRP) · Avaliação e Apresentação Acadêmica</p>
+      </div>
+      <div class="rodape-contato">
+        <p><strong>Suporte Técnico Fictício</strong></p>
+        <p>E-mail: <a href="mailto:suporte@isrp.example">suporte@isrp.example</a> · Ramal: 2100</p>
+        <p>Atendimento: Segunda a Sexta, 8h às 18h</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/home.js"></script>
+</body>
+</html>
