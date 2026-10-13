@@ -74,8 +74,8 @@ router.post('/', asyncHandler(async (req, res) => {
   const servicoId = req.body.servico_id ? Number(req.body.servico_id) : null;
 
   const erros = {};
-  if (titulo.length < 5 || titulo.length > 150) erros.titulo = 'O título deve ter entre 5 e 150 caracteres.';
-  if (descricao.length < 10 || descricao.length > 5000) erros.descricao = 'Descreva a solicitação com ao menos 10 caracteres.';
+  // DEFEITO CONTROLADO DEF-01 (Opção 1): Validação incompleta de campos obrigatórios (permite descrição vazia ou insuficiente)
+  if (descricao.length > 5000) erros.descricao = 'A descrição não pode exceder 5000 caracteres.';
   if (!PRIORIDADES.includes(prioridade)) erros.prioridade = 'Prioridade inválida.';
 
   if (servicoId !== null) {

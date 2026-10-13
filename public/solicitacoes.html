@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
@@ -90,7 +90,8 @@
             </div>
             <div class="form-grupo">
               <label for="descricao">Descrição <span class="obrigatorio" aria-hidden="true">*</span></label>
-              <textarea id="descricao" name="descricao" required minlength="10" maxlength="5000" placeholder="Descreva o que aconteceu, onde e desde quando."></textarea>
+              <!-- DEFEITO CONTROLADO DEF-01: Atributos required e minlength ausentes no campo obrigatório de descrição -->
+              <textarea id="descricao" name="descricao" maxlength="5000" placeholder="Descreva o que aconteceu, onde e desde quando."></textarea>
             </div>
             <div class="acoes-form">
               <button type="submit" class="btn btn-primario" id="btn-enviar">Registrar solicitação</button>

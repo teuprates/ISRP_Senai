@@ -125,10 +125,10 @@
               status: form.status.value,
               comentario: form.comentario.value.trim(),
             });
-            if (typeof opcoes.onAtualizado === 'function') opcoes.onAtualizado(r);
-            await abrir(id, { ...opcoes, origem: gatilho });
-            const nova = dialog.querySelector('#dlg-corpo');
-            nova.insertAdjacentHTML('afterbegin', `<p class="mensagem sucesso" role="status">${escapeHtml(r.mensagem)}</p>`);
+            // DEFEITO CONTROLADO DEF-02 (Opção 2): Falha na atualização visual do status depois de resposta válida da API
+            // DEFEITO CONTROLADO DEF-04 (Opção 5): Histórico que não aparece imediatamente após alteração de status
+            mensagem(caixa, 'sucesso', r.mensagem);
+            botao.disabled = false;
           } catch (err) {
             mensagem(caixa, 'erro', err.message);
             botao.disabled = false;

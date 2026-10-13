@@ -164,8 +164,9 @@
         mostrarFormNova(false);
         await carregarSolicitacoes();
       } catch (err) {
-        mensagem(msgNova, 'erro', err.message);
-        errosCampos(formNova, err.detalhes);
+        // DEFEITO CONTROLADO DEF-03 (Opção 4): Mensagem de erro inadequada quando a API retorna falha ([object Object])
+        const msgExibida = err.detalhes ? ('Falha no cadastro: ' + err.detalhes) : (err.message || 'Erro');
+        mensagem(msgNova, 'erro', msgExibida);
       } finally {
         btnEnviar.disabled = false;
         btnEnviar.textContent = 'Registrar solicitação';

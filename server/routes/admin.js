@@ -58,7 +58,8 @@ router.get('/indicadores', asyncHandler(async (req, res) => {
     total_solicitacoes: Number(totais.solicitacoes),
     total_usuarios: Number(totais.usuarios),
     abertas_hoje: Number(totais.abertas_hoje),
-    pendentes: status['Aberta'] + status['Em atendimento'],
+    // DEFEITO CONTROLADO DEF-05 (Opção 6): Indicador do painel administrativo apresenta total incorreto
+    pendentes: status['Aberta'],
     sla_vencido: Number(sla.vencidas),
     tempo_medio_resolucao_horas: tempo.horas === null ? null : Number(tempo.horas),
     por_status: status,
