@@ -1,0 +1,287 @@
+[
+  {
+    "id": "HOM-001",
+    "requisito": "RF-01 / RF-02",
+    "defeitoId": "DEF-01",
+    "statusRodada1": "REPROVADO",
+    "statusTeste": "APROVADO",
+    "esperado": "HTTP 400 Bad Request com erro de validação (\"Descreva a solicitação com ao menos 10 caracteres.\"); registro bloqueado no MySQL.",
+    "observado": "HTTP 400 ({\"erro\":\"Verifique os campos destacados.\",\"detalhes\":{\"descricao\":\"Descreva a solicitação com ao menos 10 caracteres.\"}}). Registro inexistente no banco (0 registros com esse título).",
+    "evidenciaHttp": {
+      "status": 400,
+      "body": {
+        "erro": "Verifique os campos destacados.",
+        "detalhes": {
+          "descricao": "Descreva a solicitação com ao menos 10 caracteres."
+        }
+      }
+    },
+    "evidenciaSql": {
+      "registrosEncontrados": 0
+    },
+    "comparacao": "Na Rodada 1 o chamado vazio era aceito (HTTP 201). Na Rodada 2 a validação barrou com sucesso (HTTP 400)."
+  },
+  {
+    "id": "HOM-002",
+    "requisito": "RF-01 / RF-02",
+    "defeitoId": null,
+    "statusRodada1": "APROVADO",
+    "statusTeste": "APROVADO",
+    "esperado": "HTTP 201 Created com solicitação gerada, protocolo formatado e histórico inicial criado.",
+    "observado": "HTTP 201 Protocolo: ISRP-2026-00007. Registro persistido com status Aberta.",
+    "evidenciaHttp": {
+      "status": 201,
+      "body": {
+        "mensagem": "Solicitação ISRP-2026-00007 registrada com sucesso.",
+        "solicitacao": {
+          "id": 7,
+          "protocolo": "ISRP-2026-00007",
+          "titulo": "Instalação do pacote de modelagem homologado",
+          "descricao": "Solicito a instalação do software AutoCAD homologado pelo setor de infraestrutura.",
+          "categoria": "Software",
+          "prioridade": "Alta",
+          "status": "Aberta",
+          "criado_em": "2026-10-13T18:48:38.000Z",
+          "atualizado_em": "2026-10-13T18:48:38.000Z",
+          "usuario_id": 2,
+          "servico_id": 4,
+          "solicitante": "Ana Exemplo da Silva",
+          "servico_nome": "Instalação de Software",
+          "prazo_horas": 24,
+          "setor_id": 4,
+          "setor_nome": "Infraestrutura e Software",
+          "setor_sigla": "INFRA"
+        }
+      }
+    },
+    "evidenciaSql": {
+      "id": 7,
+      "protocolo": "ISRP-2026-00007",
+      "titulo": "Instalação do pacote de modelagem homologado",
+      "status": "Aberta"
+    },
+    "comparacao": "Manteve-se APROVADO em ambas as rodadas. Sem regressão."
+  },
+  {
+    "id": "HOM-003",
+    "requisito": "RF-05 / RF-06",
+    "defeitoId": "DEF-02",
+    "statusRodada1": "REPROVADO",
+    "statusTeste": "APROVADO",
+    "esperado": "API responde 200 OK; Interface executa callback onAtualizado e re-renderiza o modal atualizado.",
+    "observado": "API retornou HTTP 200 OK e persistiu status \"Em atendimento\". O código de detalhes.js agora invoca onAtualizado() e abrir(id) garantindo a re-renderização visual do badge e da tabela.",
+    "evidenciaHttp": {
+      "status": 200,
+      "body": {
+        "mensagem": "Status alterado para \"Em atendimento\".",
+        "solicitacao": {
+          "id": 3,
+          "protocolo": "ISRP-2026-00003",
+          "titulo": "Impressora do 2º andar não imprime",
+          "descricao": "A impressora fica com a luz de erro acesa e não aceita novos trabalhos.",
+          "categoria": "Manutenção",
+          "prioridade": "Alta",
+          "status": "Em atendimento",
+          "criado_em": "2026-10-11T18:47:08.000Z",
+          "atualizado_em": "2026-10-13T18:48:39.000Z",
+          "usuario_id": 3,
+          "servico_id": 3,
+          "solicitante": "Bruno Fictício Souza",
+          "servico_nome": "Manutenção de Equipamentos",
+          "prazo_horas": 48,
+          "setor_id": 3,
+          "setor_nome": "Manutenção de Equipamentos",
+          "setor_sigla": "MANUT"
+        }
+      }
+    },
+    "evidenciaSql": {
+      "id": 3,
+      "protocolo": "ISRP-2026-00003",
+      "status": "Em atendimento"
+    },
+    "comparacao": "Na Rodada 1 o status visual congelava no estado anterior. Na Rodada 2 a sincronização de estado foi restabelecida."
+  },
+  {
+    "id": "HOM-004",
+    "requisito": "RF-02 / Usabilidade",
+    "defeitoId": "DEF-03",
+    "statusRodada1": "REPROVADO",
+    "statusTeste": "APROVADO",
+    "esperado": "Mensagem de erro amigável e legível na interface (\"Verifique os campos destacados.\") com indicação de campo via errosCampos.",
+    "observado": "API retornou HTTP 400 com erro textual formatado. No frontend (solicitacoes.js), a concatenação indevida foi eliminada; a mensagem exibe err.message e os campos são marcados com aria-invalid=\"true\" e erros individuais.",
+    "evidenciaHttp": {
+      "status": 400,
+      "body": {
+        "erro": "Verifique os campos destacados.",
+        "detalhes": {
+          "titulo": "O título deve ter entre 5 e 150 caracteres."
+        }
+      }
+    },
+    "comparacao": "Na Rodada 1 a tela exibia \"[object Object]\". Na Rodada 2 o texto de erro e o foco no campo são exibidos adequadamente."
+  },
+  {
+    "id": "HOM-005",
+    "requisito": "RF-06",
+    "defeitoId": "DEF-04",
+    "statusRodada1": "REPROVADO",
+    "statusTeste": "APROVADO",
+    "esperado": "Linha do tempo no modal recarrega imediatamente com o novo histórico gerado.",
+    "observado": "Evento persistido no MySQL (ID 16) e retornado na consulta da API. Com a chamada a abrir(id) restabelecida em detalhes.js, a rota /api/solicitacoes/:id/historico é invocada e injeta o novo nó na linha do tempo no DOM imediatamente.",
+    "evidenciaHttp": {
+      "statusPatch": 200,
+      "totalHistoricoApi": 3
+    },
+    "evidenciaSql": {
+      "id": 16,
+      "status_anterior": "Em atendimento",
+      "status_novo": "Resolvida",
+      "comentario": "Substituição de disco rígido concluída e validada.",
+      "criado_em": "2026-10-13T18:48:39.000Z"
+    },
+    "comparacao": "Na Rodada 1 a linha do tempo permanecia estática com dados em cache. Na Rodada 2 o histórico atualiza de imediato."
+  },
+  {
+    "id": "HOM-006",
+    "requisito": "RF-07",
+    "defeitoId": "DEF-05",
+    "statusRodada1": "REPROVADO",
+    "statusTeste": "APROVADO",
+    "esperado": "Indicador pendentes = 4 (soma exata de Aberta [2] + Em atendimento [2]).",
+    "observado": "API retornou pendentes = 4, coincidindo 100% com a consulta relacional no MySQL (4).",
+    "evidenciaHttp": {
+      "status": 200,
+      "body": {
+        "total_solicitacoes": 7,
+        "total_usuarios": 3,
+        "abertas_hoje": 2,
+        "pendentes": 4,
+        "sla_vencido": 3,
+        "tempo_medio_resolucao_horas": 46.7,
+        "por_status": {
+          "Aberta": 2,
+          "Em atendimento": 2,
+          "Resolvida": 2,
+          "Encerrada": 1
+        },
+        "por_prioridade": {
+          "Baixa": 1,
+          "Média": 1,
+          "Alta": 4,
+          "Crítica": 1
+        },
+        "por_setor": [
+          {
+            "sigla": "INFRA",
+            "nome": "Infraestrutura e Software",
+            "total": 2,
+            "pendentes": 1
+          },
+          {
+            "sigla": "SEGAC",
+            "nome": "Segurança da Informação e Acessos",
+            "total": 2,
+            "pendentes": 1
+          },
+          {
+            "sigla": "CST",
+            "nome": "Central de Suporte Técnico",
+            "total": 1,
+            "pendentes": 0
+          },
+          {
+            "sigla": "MANUT",
+            "nome": "Manutenção de Equipamentos",
+            "total": 1,
+            "pendentes": 1
+          },
+          {
+            "sigla": "SISCORP",
+            "nome": "Sistemas Corporativos",
+            "total": 1,
+            "pendentes": 1
+          }
+        ]
+      }
+    },
+    "evidenciaSql": {
+      "abertas": "2",
+      "em_atendimento": "2",
+      "pendentes_reais": "4"
+    },
+    "comparacao": "Na Rodada 1 a API omitia os chamados \"Em atendimento\" e retornava valor divergente. Na Rodada 2 a soma computa ambos os status com precisão."
+  },
+  {
+    "id": "HOM-007",
+    "requisito": "RF-03",
+    "defeitoId": null,
+    "statusRodada1": "APROVADO",
+    "statusTeste": "APROVADO",
+    "esperado": "Login válido aceito com cookie HttpOnly, login inválido bloqueado com 401 e sessão validada.",
+    "observado": "Login válido: HTTP 200; Login inválido: HTTP 401 (Usuário ou senha inválidos.); Sessão: autenticada com sucesso.",
+    "evidenciaHttp": {
+      "loginValido": 200,
+      "loginInvalido": 401,
+      "sessao": {
+        "autenticado": true,
+        "usuario": {
+          "id": 2,
+          "nome": "Ana Exemplo da Silva",
+          "email": "ana.demo@isrp.example",
+          "usuario": "ana.demo",
+          "perfil": "usuario"
+        }
+      }
+    },
+    "comparacao": "Manteve-se APROVADO em ambas as rodadas. Sem regressão de segurança."
+  },
+  {
+    "id": "HOM-008",
+    "requisito": "RF-04",
+    "defeitoId": null,
+    "statusRodada1": "APROVADO",
+    "statusTeste": "APROVADO",
+    "esperado": "HTTP 403 Forbidden para usuário sem privilégios de administrador.",
+    "observado": "HTTP 403 Forbidden com mensagem: \"Acesso restrito a administradores.\".",
+    "evidenciaHttp": {
+      "status": 403,
+      "body": {
+        "erro": "Acesso restrito a administradores."
+      }
+    },
+    "comparacao": "Manteve-se APROVADO em ambas as rodadas. Sem regressão no controle de privilégios."
+  },
+  {
+    "id": "HOM-009",
+    "requisito": "RF-08",
+    "defeitoId": null,
+    "statusRodada1": "APROVADO",
+    "statusTeste": "APROVADO",
+    "esperado": "Retornar apenas solicitações que coincidem com os filtros aplicados.",
+    "observado": "HTTP 200. Total retornado: 2 registros, todos com status 'Aberta'.",
+    "evidenciaHttp": {
+      "status": 200,
+      "total": 2
+    },
+    "comparacao": "Manteve-se APROVADO em ambas as rodadas. Sem regressão de busca."
+  },
+  {
+    "id": "HOM-010",
+    "requisito": "RF-09",
+    "defeitoId": null,
+    "statusRodada1": "APROVADO",
+    "statusTeste": "APROVADO",
+    "esperado": "HTTP 200 OK com status \"ok\" e banco \"conectado\".",
+    "observado": "HTTP 200 OK com dados: {\"status\":\"ok\",\"banco\":\"conectado\",\"horario\":\"2026-10-13T18:48:39.262Z\"}.",
+    "evidenciaHttp": {
+      "status": 200,
+      "body": {
+        "status": "ok",
+        "banco": "conectado",
+        "horario": "2026-10-13T18:48:39.262Z"
+      }
+    },
+    "comparacao": "Manteve-se APROVADO em ambas as rodadas. Sem regressão de conectividade."
+  }
+]
